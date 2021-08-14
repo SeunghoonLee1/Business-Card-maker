@@ -1,3 +1,6 @@
+import firebase from 'firebase';  
+  
+
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
@@ -9,5 +12,7 @@
     // measurementId: "G-BPXJM2DL20"
   };
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  const firebaseApp = firebase.initializeApp(firebaseConfig);
   // firebase.analytics();
+
+  export default firebaseApp;
