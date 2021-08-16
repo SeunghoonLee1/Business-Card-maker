@@ -11,32 +11,35 @@ const Maker = ({authService}) => {
     {
       id: '1',
       name: 'Danny',
-      theme: 'light',
+      company: 'Google',
+      theme: 'dark',
       title: 'software engineer',
       email: 'seunghoonlee95@gmail.com',
-      message: 'go for it',
+      message: 'Go for it!',
       fileName: 'danny',
-      fileURL: 'danny.png'
+      fileURL: null,
     },
     {
       id: '2',
       name: 'Alina',
+      company: 'Apple',
       theme: 'light',
       title: 'software engineer',
       email: 'alina@gmail.com',
-      message: 'go for it',
+      message: 'You can do this!',
       fileName: 'alina',
-      fileURL: 'alina.png'
+      fileURL: null,
     },
     {
       id: '3',
       name: 'Sophie',
-      theme: 'light',
+      company: 'Microsoft',
+      theme: 'colorful',
       title: 'software engineer',
       email: 'sophieez@gmail.com',
-      message: 'go for it',
+      message: 'Haha',
       fileName: 'sophie',
-      fileURL: 'sophie.png'
+      fileURL: null,
     }
   ]);
 
