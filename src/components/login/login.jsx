@@ -16,9 +16,11 @@ const Login = ({authService}) => {
   const onLogin = (event) => {
     authService
     .login(event.currentTarget.textContent)
-    .then(data => goToMaker(data.user.uid));
+    .then(data => goToMaker(data.user.uid))
+    .catch((error) => console.log(error));  //just in case error발생할 경우..
   };
 
+  //이미 로그인되어있으면 user를 받아와서 또다시 login하는 페이지로 가지 않게끔. 바로 maker로 가게끔!
   useEffect(() => {
     authService
     .onAuthChange(user => {
@@ -26,13 +28,11 @@ const Login = ({authService}) => {
     });
   });
 
-  const onLogout =(event)=>{
-    console.log('log out!');
-  };
+
 
   return(
     <section className={styles.login}>
-      <Header onLogOut={onLogout}/>
+      <Header/>
         <section>
           <h1>Login</h1>
           <ul className={styles.list}>

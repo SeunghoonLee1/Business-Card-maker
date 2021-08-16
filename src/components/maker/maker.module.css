@@ -1,0 +1,46 @@
+@value makerWhite from '/src/common/colors.css';
+@value makerGreen from '/src/common/colors.css';
+@value makerLightPink from '/src/common/colors.css';
+@value makerLightGrey from '/src/common/colors.css';
+
+@value mediaQuery from '/src/common/size.css';
+
+.maker {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  flex: 1; /*flex-grow : 1, flex-shrink : 1, flex-basis : 0%*/
+  background-color: makerWhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+/* .cardMaker {
+  flex: 1;
+  text-align: center;
+  border-right: 1px solid makerLightGrey;
+  color: makerGreen;
+  font-size: 1.2em;
+}
+
+.cardPreview {
+  flex: 1;
+  text-align: center;
+  color: makerGreen;
+  font-size: 1.2em;
+} */
+
+@media screen and (max-width: mediaQuery) {
+  .container {
+    flex-direction: column;
+  }
+
+  .cardMaker {
+    border-bottom: 1px solid makerLightGrey;
+  }
+}
