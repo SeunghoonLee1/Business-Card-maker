@@ -53,7 +53,7 @@ const CardAddForm = ({ onAdd}) => {
       >
         <option value="light">Light</option>
         <option value="dark">Dark</option>
-        <option value="colorful">Colorful!!</option>
+        <option value="colorful">Colorful</option>
       </select>
       <input
         ref={titleRef}
