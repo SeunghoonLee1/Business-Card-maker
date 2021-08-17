@@ -17,7 +17,6 @@ function App({authService}) {
           </Route>
         </Switch>
       </BrowserRouter>
-      
     </div>
   );
 }
