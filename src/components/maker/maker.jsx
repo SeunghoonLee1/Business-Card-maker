@@ -7,6 +7,7 @@ import Preview from '../preview/preview';
 import styles from './maker.module.css';
 
 const Maker = ({FileInput, authService}) => {
+  //cards가 각각의 card object(key, val(card))를 포함하도록!
   const [cards, setCards] = useState(
     {
       '1': {

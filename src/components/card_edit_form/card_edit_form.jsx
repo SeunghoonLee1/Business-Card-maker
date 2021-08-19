@@ -18,7 +18,6 @@ const CardEditForm = ({FileInput, card, updateCard, deleteCard}) => {
     message, 
     theme, 
     fileName, 
-    fileURL
   } = card;  //deconstructiong이용! 
 
   const onSubmit = () =>{
@@ -26,7 +25,7 @@ const CardEditForm = ({FileInput, card, updateCard, deleteCard}) => {
   };
 
   const onFileChange = file => {
-    updateCard({
+    updateCard({  //card를 그대로 복사하되, fileName과 fileURL은 새로 update해서 복사.
       ...card,
       fileName:file.name,
       fileURL:file.url,
