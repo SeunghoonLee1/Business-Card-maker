@@ -6,44 +6,46 @@ import Header from '../header/header';
 import Preview from '../preview/preview';
 import styles from './maker.module.css';
 
-const Maker = ({FileInput, authService}) => {
+const Maker = ({FileInput, authService, cardRepository}) => {
+  const historyState = useHistory().state;
   //cards가 각각의 card object(key, val(card))를 포함하도록!
   const [cards, setCards] = useState(
     {
-      '1': {
-        id: '1',
-        name: 'Danny',
-        company: 'Google',
-        theme: 'dark',
-        title: 'software engineer',
-        email: 'seunghoonlee95@gmail.com',
-        message: 'Go for it!',
-        fileName: 'danny',
-        fileURL: null,
-      },
-      '2': {
-        id: '2',
-        name: 'Alina',
-        company: 'Apple',
-        theme: 'light',
-        title: 'software engineer',
-        email: 'alina@gmail.com',
-        message: 'You can do this!',
-        fileName: 'alina',
-        fileURL: null,
-      },
-      '3': {
-        id: '3',
-        name: 'Sophie',
-        company: 'Microsoft',
-        theme: 'colorful',
-        title: 'software engineer',
-        email: 'sophieez@gmail.com',
-        message: 'Haha',
-        fileName: 'sophie',
-        fileURL: null,
-      },
+      // '1': {
+      //   id: '1',
+      //   name: 'Danny',
+      //   company: 'Google',
+      //   theme: 'dark',
+      //   title: 'software engineer',
+      //   email: 'seunghoonlee95@gmail.com',
+      //   message: 'Go for it!',
+      //   fileName: 'danny',
+      //   fileURL: null,
+      // },
+      // '2': {
+      //   id: '2',
+      //   name: 'Alina',
+      //   company: 'Apple',
+      //   theme: 'light',
+      //   title: 'software engineer',
+      //   email: 'alina@gmail.com',
+      //   message: 'You can do this!',
+      //   fileName: 'alina',
+      //   fileURL: null,
+      // },
+      // '3': {
+      //   id: '3',
+      //   name: 'Sophie',
+      //   company: 'Microsoft',
+      //   theme: 'colorful',
+      //   title: 'software engineer',
+      //   email: 'sophieez@gmail.com',
+      //   message: 'Haha',
+      //   fileName: 'sophie',
+      //   fileURL: null,
+      // },
     });
+  const [userId, setUserId] = useState(historyState && historyState.id);
 
   const history = useHistory();
   // const location = useLocation();
@@ -52,11 +54,24 @@ const Maker = ({FileInput, authService}) => {
     authService.logout();
   };
 
+  useEffect(() => {
+    if(!userId){
+      return;
+    }
+    const stopSync = cardRepository.syncCards(userId, cards => {
+      setCards(cards);
+    })
+    return () => stopSync();
+  }, [userId]);
+
+  //로그인에 관련된 logic
   useEffect(()=>{
     // console.log(`uid : ${location.state.uid}`);
     authService.onAuthChange(user => {
-      if(!user){
-        history.push('/');
+      if(user){
+        setUserId(user.uid);
+      }else{
+        history.push('/');  //사용자가 없다면 로그인화면으로 돌아가게
       }
     });
   });
@@ -86,12 +101,15 @@ const Maker = ({FileInput, authService}) => {
     //   return updated;
     // });
 
+    //Component에 card를 update한 뒤에, db에 update해주면됨
+    cardRepository.saveCard(userId, card);
 
   };
   const deleteCard = (card) =>{
     const updated = {...cards};
     delete updated[card.id];
     setCards(updated);
+    cardRepository.removeCard(userId, card);
   };
 
   return(

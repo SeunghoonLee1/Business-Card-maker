@@ -2,6 +2,7 @@
 @value makerLightGrey from '/src/common/colors.css';
 .preview {
   flex-basis: 50%;
+  overflow-y: auto;
   /* background-color: makerLightGrey; */
 }
 

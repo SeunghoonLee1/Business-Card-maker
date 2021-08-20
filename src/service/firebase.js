@@ -3,8 +3,8 @@ import firebase from 'firebase';
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-    projectId: process.env.REACT_APP_FIREBASE_DB_URL,
-    databaseURL: process.env.REACT_APP_PROJECT_ID,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
     // storageBucket: "business-card-maker-768ea.appspot.com",
     // messagingSenderId: "871676080405",
     // appId: "1:871676080405:web:61d8fbbca89c7ad0eaf91c",
